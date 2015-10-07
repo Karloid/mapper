@@ -30,6 +30,7 @@ proguard/
 .gradle/
 build/
 locations.csv
+output.png
 
 .gradle
 # Ignore Gradle GUI config

@@ -1,16 +1,23 @@
 public class Coordinate {
     public final double latitude;
     public final double longitude;
+    public String deviceName;
 
     public Coordinate(String s) {
         String[] split = s.split(",");
-        latitude = Double.parseDouble(split[1])+ 180;
-        longitude = Double.parseDouble(split[0])+ 90;
+        if (split.length == 2) {
+            latitude = Double.parseDouble(split[1]) + 180;
+            longitude = Double.parseDouble(split[0]) + 90;
+        } else {
+            latitude = Double.parseDouble(split[2]) + 180;
+            longitude = Double.parseDouble(split[1]) + 90;
+            deviceName = split[3] + split[4];
+        }
     }
 
     public Coordinate(int latitude, int longitude) {
-        this.latitude = latitude ;
-        this.longitude = longitude  ;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     @Override
@@ -22,7 +29,7 @@ public class Coordinate {
     }
 
     public double getLat() {
-        return latitude ;
+        return latitude;
     }
 
     public double getLong() {
@@ -30,7 +37,7 @@ public class Coordinate {
     }
 
     public static Coordinate roundTo(Coordinate coordinate, int roundTo) {
-        return new Coordinate((int)(coordinate.latitude / roundTo) * roundTo, (int)( coordinate.longitude / roundTo) * roundTo);
+        return new Coordinate((int) (coordinate.latitude / roundTo) * roundTo, (int) (coordinate.longitude / roundTo) * roundTo);
     }
 
     @Override
